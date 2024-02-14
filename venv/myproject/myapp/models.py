@@ -102,7 +102,6 @@ class temporray(models.Model):
 
 class EmployeeStatus(models.Model):
     ID = models.AutoField(primary_key=True)
-    # DailyRecord = models.ForeignKey(DailyRecord, on_delete=models.CASCADE, to_field= 'ID', null=True)
     RequestForm = models.ForeignKey(RequestForm, on_delete=models.CASCADE, to_field= 'FormID', null=True) 
     RequestDate = models.DateField(default=date(2000, 1, 1))
     totallateness = models.FloatField(default = 00)
