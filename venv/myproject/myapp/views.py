@@ -237,7 +237,7 @@ def login_view(request):
             if user:
                 login(request, user)
                 if request.user.username == 'emb_payroll':
-                    return redirect('home_payroll')
+                    return redirect('payroll_home')
                 else:
                     return redirect('home')
             
@@ -1124,4 +1124,11 @@ def employee_early(request):
     early_threshold = time(7, 0, 0)
 
     early_employees = DailyRecord.objects.filter(
-        dat
+        date=current_date,
+        timein__lt=early_threshold
+    ).count()
+
+    data = {'early_employees': early_employees}
+    return JsonResponse(data)
+
+
